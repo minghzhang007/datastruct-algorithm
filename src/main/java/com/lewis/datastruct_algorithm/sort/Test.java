@@ -14,7 +14,9 @@ public class Test {
     public static void testInsertSort() throws MyException {
         int[] array = RandomUtil.generateRandomArray(10000, 10, 100000);
         int[] array1 = RandomUtil.copyArray(array);
+        int[] array2 = RandomUtil.copyArray(array);
         TestSortUtil.testSort(SortEnum.INSERT_SORT,array);
         TestSortUtil.testSort(SortEnum.INSERT_SORT_ADVANCE,array1);
+        TestSortUtil.testSort(SortEnum.SELECTION_SORT,array2);
     }
 }

@@ -20,7 +20,7 @@ public class TestSortUtil {
         if (!isSorted(array)) {
             throw new MyException("数组排序不对！");
         }
-        System.out.println(Arrays.toString(array));
+        //System.out.println(Arrays.toString(array));
     }
 
 
