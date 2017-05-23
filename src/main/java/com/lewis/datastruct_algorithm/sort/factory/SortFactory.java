@@ -3,7 +3,7 @@ package com.lewis.datastruct_algorithm.sort.factory;
 import com.lewis.datastruct_algorithm.sort.Sort;
 import com.lewis.datastruct_algorithm.sort.SortEnum;
 import com.lewis.datastruct_algorithm.sort.strategy.*;
-import com.lewis.datastruct_algorithm.sort.strategy.advanced.MegerSort;
+import com.lewis.datastruct_algorithm.sort.strategy.advanced.MergeSort;
 import com.lewis.datastruct_algorithm.sort.strategy.advanced.QuickSort;
 
 /**
@@ -29,7 +29,7 @@ public class SortFactory {
     }
 
     public static Sort createMegerSort() {
-        return createSort(SortEnum.MEGER_SORT);
+        return createSort(SortEnum.MERGE_SORT);
     }
 
     public static Sort createQuickSort() {
@@ -50,8 +50,8 @@ public class SortFactory {
                 return new SelectionSort();
             case SHELL_SORT:
                 return new ShellSort();
-            case MEGER_SORT:
-                return new MegerSort();
+            case MERGE_SORT:
+                return new MergeSort();
             case QUICK_SORT:
                 return new QuickSort();
             case INSERT_SORT_ADVANCE:
