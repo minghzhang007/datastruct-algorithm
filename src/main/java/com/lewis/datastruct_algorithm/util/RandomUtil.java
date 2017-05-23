@@ -32,10 +32,16 @@ public class RandomUtil {
         return array;
     }
 
-    private static void swap(int[] array, int idx1, int idx2) {
+    public static void swap(int[] array, int idx1, int idx2) {
         int temp = array[idx1];
         array[idx1] = array[idx2];
         array[idx2] = temp;
+    }
+
+    public static int[] copyArray(int[] array) {
+        int[] newArray = new int[array.length];
+        System.arraycopy(array, 0, newArray, 0, array.length);
+        return newArray;
     }
 
     public static void main(String[] args) {

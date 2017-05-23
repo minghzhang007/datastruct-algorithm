@@ -2,10 +2,7 @@ package com.lewis.datastruct_algorithm.sort.factory;
 
 import com.lewis.datastruct_algorithm.sort.Sort;
 import com.lewis.datastruct_algorithm.sort.SortEnum;
-import com.lewis.datastruct_algorithm.sort.strategy.BubbleSort;
-import com.lewis.datastruct_algorithm.sort.strategy.InsertSort;
-import com.lewis.datastruct_algorithm.sort.strategy.SelectionSort;
-import com.lewis.datastruct_algorithm.sort.strategy.ShellSort;
+import com.lewis.datastruct_algorithm.sort.strategy.*;
 import com.lewis.datastruct_algorithm.sort.strategy.advanced.MegerSort;
 import com.lewis.datastruct_algorithm.sort.strategy.advanced.QuickSort;
 
@@ -39,7 +36,11 @@ public class SortFactory {
         return createSort(SortEnum.QUICK_SORT);
     }
 
-    private static Sort createSort(SortEnum sortEnum) {
+    public static Sort createInsertSortAdvance() {
+        return createSort(SortEnum.INSERT_SORT_ADVANCE);
+    }
+
+    public static Sort createSort(SortEnum sortEnum) {
         switch (sortEnum) {
             case BUBBLE_SORT:
                 return new BubbleSort();
@@ -53,6 +54,8 @@ public class SortFactory {
                 return new MegerSort();
             case QUICK_SORT:
                 return new QuickSort();
+            case INSERT_SORT_ADVANCE:
+                return new InsertSortAdvanced();
             default:
                 return new QuickSort();
         }
