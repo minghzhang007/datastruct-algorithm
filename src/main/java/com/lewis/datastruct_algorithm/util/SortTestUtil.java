@@ -10,7 +10,7 @@ import java.util.Arrays;
 /**
  * Created by Administrator on 2017/5/23.
  */
-public class TestSortUtil {
+public class SortTestUtil {
 
     public static void testSort(SortEnum sortEnum, int[] array) throws MyException {
         Sort sortStrategy = SortFactory.createSort(sortEnum);
