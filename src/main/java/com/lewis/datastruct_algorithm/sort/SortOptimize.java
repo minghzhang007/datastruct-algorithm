@@ -7,7 +7,6 @@ import java.util.Random;
  * @version Id: SortOptimize, v 0.1 2017/5/25 9:44 zmh46712 Exp $
  */
 public interface SortOptimize {
-    Random random = new Random();
 
     /**
      * 使用插入排序 来排序数组array中下标从l到r的部分
@@ -28,10 +27,7 @@ public interface SortOptimize {
     }
 
     /**
-     * 判断是否使用插入排序来优化效率
-     * @param leftIndex
-     * @param rightIndex
-     * @return
+     * 对于小规模数组，判断是否使用插入排序来优化效率
      */
     default boolean isUseInsertSortOpt(int leftIndex, int rightIndex) {
         return rightIndex - leftIndex + 1 < 47;
@@ -47,7 +43,7 @@ public interface SortOptimize {
     }
 
     default int random(int leftIndex, int rightIndex) {
-        return random.nextInt(rightIndex - leftIndex + 1) + leftIndex;
+        return (int) (Math.random() * (rightIndex - leftIndex + 1)) + leftIndex;
     }
 
 }
