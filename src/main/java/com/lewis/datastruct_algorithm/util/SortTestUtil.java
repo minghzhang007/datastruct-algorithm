@@ -13,16 +13,21 @@ import java.util.Arrays;
 public class SortTestUtil {
 
     public static void testSort(SortEnum sortEnum, int[] array) throws MyException {
+        testSort(sortEnum, array, false);
+    }
+
+    public static void testSort(SortEnum sortEnum, int[] array, boolean needPrintArrayAfterSorted) throws MyException {
         Sort sortStrategy = SortFactory.createSort(sortEnum);
         long begin = System.currentTimeMillis();
         sortStrategy.sort(array);
-        System.out.println(sortEnum + " costTime: " + (System.currentTimeMillis() - begin) +" MS");
-        if (!isSorted(array)) {
-            throw new MyException("数组排序不对！");
+        System.out.println(sortEnum + " costTime: " + (System.currentTimeMillis() - begin) + " MS");
+        if (needPrintArrayAfterSorted) {
+            System.out.println(Arrays.toString(array));
         }
-        //System.out.println(Arrays.toString(array));
+        if (!isSorted(array)) {
+            System.out.println(sortEnum + " 数组元素排序不对！");
+        }
     }
-
 
     private static boolean isSorted(int[] array) {
         for (int i = 0; i < array.length - 1; i++) {

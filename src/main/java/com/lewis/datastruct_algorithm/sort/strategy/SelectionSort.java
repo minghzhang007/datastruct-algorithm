@@ -21,7 +21,7 @@ public class SelectionSort implements Sort {
                     minIndex = j;
                 }
             }
-            RandomUtil.swap(array, minIndex, i);
+            swap(array, minIndex, i);
         }
         return array;
     }

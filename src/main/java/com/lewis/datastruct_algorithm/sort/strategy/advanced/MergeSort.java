@@ -24,12 +24,22 @@ public class MergeSort implements Sort {
      * @param right 排序的结束为止
      */
     private void sort(int[] array, int[] tempArray, int left, int right) {
-        if (left >= right)
+
+        if (checkBounds(left, right)) {
+            insertSort(array, left, right);
             return;
+        }
         int midIndex = (right + left) / 2;
         sort(array, tempArray, left, midIndex);
         sort(array, tempArray, midIndex + 1, right);
-        merge(array, tempArray, left, midIndex, right);
+        //对于array[midIndex] <= array[midIndex+1]的情况，不进行merge ,对于近乎有序的数组非常有效，但对于一般情况会有性能损失
+        if (array[midIndex] > array[midIndex+1]) {
+            merge(array, tempArray, left, midIndex, right);
+        }
+    }
+
+    private boolean checkBounds(int left, int right) {
+        return right - left + 1 < 47;
     }
 
     /**
@@ -40,7 +50,8 @@ public class MergeSort implements Sort {
      * @param midIndex 第一部分归并的结束位置
      * @param right 第二部分归并的结束位置
      */
-    private void merge(int[] array, int[] tempArray, int left, int midIndex, int right) {
+    private void merge(int[] array, int[] tempArray1, int left, int midIndex, int right) {
+        int[] tempArray = new int[right - left + 1];
         int i = left;
         int j = midIndex + 1;
         int k = 0;

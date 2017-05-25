@@ -19,7 +19,7 @@ public class InsertSort implements Sort {
             for (int j = i; j > 0; j--) {
                 if (array[j] < array[j - 1]) {
                     //每次比较符合条件，则交换两个元素位置
-                    RandomUtil.swap(array, j, j - 1);
+                    swap(array, j, j - 1);
                 } else {
                     break;
                 }
