@@ -4,6 +4,7 @@ import com.lewis.datastruct_algorithm.sort.Sort;
 
 /**
  * 双路快速排序
+ *
  * @author zmh46712
  * @version Id: QuickSort2Ways, v 0.1 2017/5/25 15:24 zmh46712 Exp $
  */
@@ -31,11 +32,29 @@ public class QuickSort2Ways implements Sort {
     }
 
     /**
-     *双路快速排序的partition
+     * 双路快速排序的partition
      * 使得返回的pIndex 满足 array[leftIndex...pIndex-1] < array[pIndex] && array[pIndex] < array[pIndex+1...rightIndex]
      */
     private int partition(Comparable[] array, int leftIndex, int rightIndex) {
-
-        return 0;
+        Comparable v = array[leftIndex];
+        //array[leftIndex+1...i) < v  < array(j,r]
+        int i = leftIndex + 1;
+        int j = rightIndex;
+        while (true) {
+            while (i <= rightIndex && array[i].compareTo(v) < 0) {
+                i++;
+            }
+            while (j >= leftIndex + 1 && array[j].compareTo(v) > 0) {
+                j--;
+            }
+            if (i > j) {
+                break;
+            }
+            swap(array, i, j);
+            i++;
+            j--;
+        }
+        swap(array, leftIndex, j);
+        return j;
     }
 }

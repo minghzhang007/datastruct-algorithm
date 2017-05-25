@@ -13,16 +13,20 @@ public class Test {
 
 
     public static void testInsertSort() throws MyException {
-        Integer[] array = RandomUtil.generateRandomArray(10000000, 0, 1000000000);
+        int size = 1000000;
+        int bounds =1000000;
+        Integer[] array = RandomUtil.generateRandomArray(size, 0, bounds);
         Integer[] array2 = RandomUtil.copyArray(array);
         Integer[] array3 = RandomUtil.copyArray(array);
-        //SortTestUtil.testSort(SortEnum.SELECTION_SORT,array2);
         SortTestUtil.testSort(SortEnum.MERGE_SORT,array3);
         SortTestUtil.testSort(SortEnum.QUICK_SORT,array);
+        SortTestUtil.testSort(SortEnum.QUICK_SORT_2WAYS,array2);
         System.out.println();
-        Integer[] arr = RandomUtil.generateNearlyOrderedArray(10000000, 1000000000);
+        /*Integer[] arr = RandomUtil.generateNearlyOrderedArray(size, 1000000000);
         Integer[] arr1 = RandomUtil.copyArray(arr);
+        Integer[] arr2 = RandomUtil.copyArray(arr);
         SortTestUtil.testSort(SortEnum.MERGE_SORT,arr);
         SortTestUtil.testSort(SortEnum.QUICK_SORT,arr1);
+        SortTestUtil.testSort(SortEnum.QUICK_SORT_2WAYS,arr2);*/
     }
 }
