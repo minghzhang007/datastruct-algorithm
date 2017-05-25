@@ -28,6 +28,16 @@ public interface SortOptimize {
     }
 
     /**
+     * 判断是否使用插入排序来优化效率
+     * @param leftIndex
+     * @param rightIndex
+     * @return
+     */
+    default boolean isUseInsertSortOpt(int leftIndex, int rightIndex) {
+        return rightIndex - leftIndex + 1 < 47;
+    }
+
+    /**
      * 交换数组array下标idx1和idx2的元素
      */
     default void swap(Comparable[] array, int idx1, int idx2) {

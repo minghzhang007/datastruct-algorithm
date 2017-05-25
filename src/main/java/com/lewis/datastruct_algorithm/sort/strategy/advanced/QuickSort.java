@@ -20,7 +20,7 @@ public class QuickSort implements Sort {
      * 使用快速排序 排序array[leftIndex...rightIndex]
      */
     private void quickSort(Comparable[] array, int leftIndex, int rightIndex) {
-        if (rightIndex - leftIndex + 1 < 47) {
+        if (isUseInsertSortOpt(leftIndex,rightIndex)) {
             insertSort(array, leftIndex, rightIndex);
             return;
         }

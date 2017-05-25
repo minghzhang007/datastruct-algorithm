@@ -25,7 +25,7 @@ public class MergeSort implements Sort {
      */
     private void sort(Comparable[] array, Comparable[] tempArray, int left, int right) {
 
-        if (checkBounds(left, right)) {
+        if (isUseInsertSortOpt(left, right)) {
             insertSort(array, left, right);
             return;
         }
@@ -36,10 +36,6 @@ public class MergeSort implements Sort {
         if (array[midIndex].compareTo(array[midIndex + 1]) > 0) {
             merge(array, tempArray, left, midIndex, right);
         }
-    }
-
-    private boolean checkBounds(int left, int right) {
-        return right - left + 1 < 47;
     }
 
     /**
