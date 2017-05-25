@@ -8,7 +8,7 @@ import com.lewis.datastruct_algorithm.sort.Sort;
  */
 public class BubbleSort implements Sort {
 
-    public int[] sort(int[] array) {
-        return new int[0];
+    public Comparable[] sort(Comparable[] array) {
+        return new Comparable[0];
     }
 }

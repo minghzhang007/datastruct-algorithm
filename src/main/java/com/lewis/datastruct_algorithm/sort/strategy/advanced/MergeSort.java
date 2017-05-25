@@ -9,8 +9,8 @@ import com.lewis.datastruct_algorithm.sort.Sort;
  */
 public class MergeSort implements Sort {
 
-    public int[] sort(int[] array) {
-        int[] tmp = new int[array.length];
+    public Comparable[] sort(Comparable[] array) {
+        Comparable[] tmp = new Comparable[array.length];
         sort(array, tmp, 0, array.length - 1);
 
         return array;
@@ -23,7 +23,7 @@ public class MergeSort implements Sort {
      * @param left  排序的起始位置
      * @param right 排序的结束为止
      */
-    private void sort(int[] array, int[] tempArray, int left, int right) {
+    private void sort(Comparable[] array, Comparable[] tempArray, int left, int right) {
 
         if (checkBounds(left, right)) {
             insertSort(array, left, right);
@@ -33,7 +33,7 @@ public class MergeSort implements Sort {
         sort(array, tempArray, left, midIndex);
         sort(array, tempArray, midIndex + 1, right);
         //对于array[midIndex] <= array[midIndex+1]的情况，不进行merge ,对于近乎有序的数组非常有效，但对于一般情况会有性能损失
-        if (array[midIndex] > array[midIndex+1]) {
+        if (array[midIndex].compareTo(array[midIndex + 1]) > 0) {
             merge(array, tempArray, left, midIndex, right);
         }
     }
@@ -45,18 +45,18 @@ public class MergeSort implements Sort {
     /**
      * 将数组array[left...midIndex]的部分和数组array[midIndex+1...right]的部分进行归并
      * @param array 待归并的数组
-     * @param tempArray 临时辅助空间
+     * @param tempArray1 临时辅助空间
      * @param left  第一部分归并的起始位置
      * @param midIndex 第一部分归并的结束位置
      * @param right 第二部分归并的结束位置
      */
-    private void merge(int[] array, int[] tempArray1, int left, int midIndex, int right) {
-        int[] tempArray = new int[right - left + 1];
+    private void merge(Comparable[] array, Comparable[] tempArray1, int left, int midIndex, int right) {
+        Comparable[] tempArray = new Comparable[right - left + 1];
         int i = left;
         int j = midIndex + 1;
         int k = 0;
         while (i <= midIndex && j <= right) {
-            if (array[i] < array[j]) {
+            if (array[i].compareTo(array[j]) < 0) {
                 tempArray[k++] = array[i];
                 i++;
             } else {

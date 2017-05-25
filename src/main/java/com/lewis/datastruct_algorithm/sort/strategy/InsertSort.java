@@ -12,12 +12,12 @@ import com.lewis.datastruct_algorithm.util.RandomUtil;
 public class InsertSort implements Sort {
     // 0 1 2 3 4 5 6
     // 4 1 5 3 6 9 7
-    public int[] sort(int[] array) {
+    public Comparable[] sort(Comparable[] array) {
 
         for (int i = 1; i < array.length; i++) {
             //寻找元素array[i]的合适的插入位置
             for (int j = i; j > 0; j--) {
-                if (array[j] < array[j - 1]) {
+                if (array[j].compareTo(array[j - 1]) < 0) {
                     //每次比较符合条件，则交换两个元素位置
                     swap(array, j, j - 1);
                 } else {

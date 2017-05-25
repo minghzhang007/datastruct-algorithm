@@ -5,6 +5,8 @@ import com.lewis.datastruct_algorithm.sort.SortEnum;
 import com.lewis.datastruct_algorithm.sort.strategy.*;
 import com.lewis.datastruct_algorithm.sort.strategy.advanced.MergeSort;
 import com.lewis.datastruct_algorithm.sort.strategy.advanced.QuickSort;
+import com.lewis.datastruct_algorithm.sort.strategy.advanced.QuickSort2Ways;
+import com.lewis.datastruct_algorithm.sort.strategy.advanced.QuickSort3Ways;
 
 /**
  * @author zmh46712
@@ -40,6 +42,14 @@ public class SortFactory {
         return createSort(SortEnum.INSERT_SORT_ADVANCE);
     }
 
+    public static Sort createQuickSort2Ways() {
+        return createSort(SortEnum.QUICK_SORT_2WAYS);
+    }
+
+    public static Sort createQuickSort3Ways() {
+        return createSort(SortEnum.QUICK_SORT_3WAYS);
+    }
+
     public static Sort createSort(SortEnum sortEnum) {
         switch (sortEnum) {
             case BUBBLE_SORT:
@@ -54,6 +64,10 @@ public class SortFactory {
                 return new MergeSort();
             case QUICK_SORT:
                 return new QuickSort();
+            case QUICK_SORT_2WAYS:
+                return new QuickSort2Ways();
+            case QUICK_SORT_3WAYS:
+                return new QuickSort3Ways();
             case INSERT_SORT_ADVANCE:
                 return new InsertSortAdvanced();
             default:

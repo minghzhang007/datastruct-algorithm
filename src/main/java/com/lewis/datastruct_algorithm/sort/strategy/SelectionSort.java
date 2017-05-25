@@ -11,13 +11,13 @@ import com.lewis.datastruct_algorithm.util.RandomUtil;
  */
 public class SelectionSort implements Sort {
 
-    public int[] sort(int[] array) {
+    public Comparable[] sort(Comparable[] array) {
 
         for (int i = 0; i < array.length; i++) {
             //minIndex表示第i轮的最小元素的下标
             int minIndex = i;
             for (int j = i + 1; j < array.length; j++) {
-                if (array[j] < array[minIndex]) {
+                if (array[j].compareTo(array[minIndex]) < 0) {
                     minIndex = j;
                 }
             }

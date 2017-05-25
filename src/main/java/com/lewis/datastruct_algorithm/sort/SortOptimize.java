@@ -16,11 +16,11 @@ public interface SortOptimize {
      * @param leftIndex     排序起始位置
      * @param rightIndex     排序结束为止
      */
-    default void insertSort(int[] array, int leftIndex, int rightIndex) {
+    default void insertSort(Comparable[] array, int leftIndex, int rightIndex) {
         for (int i = leftIndex + 1; i <= rightIndex; i++) {
-            int e = array[i];
+            Comparable e = array[i];
             int j;
-            for (j = i; j > leftIndex && array[j - 1] > e; j--) {
+            for (j = i; j > leftIndex && array[j - 1].compareTo(e) > 0; j--) {
                 array[j] = array[j - 1];
             }
             array[j] = e;
@@ -30,8 +30,8 @@ public interface SortOptimize {
     /**
      * 交换数组array下标idx1和idx2的元素
      */
-    default void swap(int[] array, int idx1, int idx2) {
-        int temp = array[idx1];
+    default void swap(Comparable[] array, int idx1, int idx2) {
+        Comparable temp = array[idx1];
         array[idx1] = array[idx2];
         array[idx2] = temp;
     }

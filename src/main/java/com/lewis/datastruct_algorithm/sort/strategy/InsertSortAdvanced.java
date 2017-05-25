@@ -10,12 +10,12 @@ public class InsertSortAdvanced implements Sort {
 
     // 0 1 2 3 4 5 6
     // 4 1 5 3 6 9 7
-    public int[] sort(int[] array) {
+    public Comparable[] sort(Comparable[] array) {
         for (int i = 1; i < array.length; i++) {
-            int e = array[i];
+            Comparable e = array[i];
             //j保存元素e应该插入的位置
             int j;
-            for (j = i; j > 0 && array[j - 1] > e; j--) {
+            for (j = i; j > 0 && array[j - 1].compareTo(e) > 0; j--) {
                 array[j] = array[j - 1];
             }
             //将元素e放入位置j处

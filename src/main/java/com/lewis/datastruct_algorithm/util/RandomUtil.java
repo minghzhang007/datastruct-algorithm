@@ -10,8 +10,8 @@ import java.util.Random;
 public class RandomUtil {
     private static final Random random = new Random();
 
-    public static int[] generateRandomArray(int size, int smallBound, int bigBound) {
-        int[] array = new int[size];
+    public static Integer[] generateRandomArray(int size, int smallBound, int bigBound) {
+        Integer[] array = new Integer[size];
         int range = bigBound - smallBound + 1;
         for (int i = 0; i < size; i++) {
             array[i] = random.nextInt(bigBound) % range + smallBound;
@@ -19,8 +19,8 @@ public class RandomUtil {
         return array;
     }
 
-    public static int[] generateNearlyOrderedArray(int size, int swapTimes) {
-        int[] array = new int[size];
+    public static Integer[] generateNearlyOrderedArray(int size, int swapTimes) {
+        Integer[] array = new Integer[size];
         for (int i = 0; i < size; i++) {
             array[i] = i;
         }
@@ -32,23 +32,23 @@ public class RandomUtil {
         return array;
     }
 
-    public static void swap(int[] array, int idx1, int idx2) {
+    public static void swap(Integer[] array, int idx1, int idx2) {
         int temp = array[idx1];
         array[idx1] = array[idx2];
         array[idx2] = temp;
     }
 
-    public static int[] copyArray(int[] array) {
-        int[] newArray = new int[array.length];
+    public static Integer[] copyArray(Integer[] array) {
+        Integer[] newArray = new Integer[array.length];
         System.arraycopy(array, 0, newArray, 0, array.length);
         return newArray;
     }
 
     public static void main(String[] args) {
-        int[] ints = generateRandomArray(100, 50, 60);
+        Integer[] ints = generateRandomArray(100, 50, 60);
         System.out.println(Arrays.toString(ints));
 
-        int[] ints1 = generateNearlyOrderedArray(10, 1);
+        Integer[] ints1 = generateNearlyOrderedArray(10, 1);
         System.out.println(Arrays.toString(ints1));
     }
 }

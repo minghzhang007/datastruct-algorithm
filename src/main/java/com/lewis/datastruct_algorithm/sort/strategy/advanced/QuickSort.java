@@ -10,7 +10,7 @@ import com.lewis.datastruct_algorithm.sort.Sort;
  */
 public class QuickSort implements Sort {
 
-    public int[] sort(int[] array) {
+    public Comparable[] sort(Comparable[] array) {
         quickSort(array, 0, array.length - 1);
 
         return array;
@@ -19,7 +19,7 @@ public class QuickSort implements Sort {
     /**
      * 使用快速排序 排序array[leftIndex...rightIndex]
      */
-    private void quickSort(int[] array, int leftIndex, int rightIndex) {
+    private void quickSort(Comparable[] array, int leftIndex, int rightIndex) {
         if (rightIndex - leftIndex + 1 < 47) {
             insertSort(array, leftIndex, rightIndex);
             return;
@@ -45,16 +45,16 @@ public class QuickSort implements Sort {
      * @param rightIndex 排序的结束下标
      * @return 下标pIndex
      */
-    private int partition(int[] array, int leftIndex, int rightIndex) {
+    private int partition(Comparable[] array, int leftIndex, int rightIndex) {
         //随机取一个标准v,使其和leftIndex交换位置
         swap(array, leftIndex, random(leftIndex, rightIndex));
-        int v = array[leftIndex];
+        Comparable v = array[leftIndex];
         //下边j代表小于标准v的最右边界 array[leftIndex+1...j] < v;  array[j+1...i) > v
         int j = leftIndex;
         //下标i代表正在处理的元素下标
         int i;
         for (i = leftIndex + 1; i <= rightIndex; i++) {
-            if (array[i] < v) {
+            if (array[i].compareTo(v) < 0) {
                 swap(array, i, ++j);
             }
         }

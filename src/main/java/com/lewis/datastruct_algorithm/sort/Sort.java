@@ -6,5 +6,5 @@ package com.lewis.datastruct_algorithm.sort;
  */
 public interface Sort extends SortOptimize {
 
-    int[] sort(int[] array);
+    Comparable[] sort(Comparable[] array);
 }
