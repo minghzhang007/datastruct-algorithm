@@ -13,22 +13,33 @@ public class Test {
 
 
     public static void testInsertSort() throws MyException {
-        int size = 1000000;
-        int bounds =100;
+        int size = 100000;
+        int bounds =1000000;
         Integer[] array = RandomUtil.generateRandomArray(size, 0, bounds);
         Integer[] array2 = RandomUtil.copyArray(array);
         Integer[] array3 = RandomUtil.copyArray(array);
         Integer[] array4 = RandomUtil.copyArray(array);
-        SortTestUtil.testSort(SortEnum.MERGE_SORT,array3);
-        SortTestUtil.testSort(SortEnum.QUICK_SORT,array);
+        Integer[] array5 = RandomUtil.copyArray(array);
+        Integer[] array6 = RandomUtil.copyArray(array);
+        SortTestUtil.testSort(SortEnum.MERGE_SORT,array);
         SortTestUtil.testSort(SortEnum.QUICK_SORT_2WAYS,array2);
+        SortTestUtil.testSort(SortEnum.QUICK_SORT,array3);
         SortTestUtil.testSort(SortEnum.QUICK_SORT_3WAYS,array4);
-        System.out.println();
-        /*Integer[] arr = RandomUtil.generateNearlyOrderedArray(size, 1000000000);
-        Integer[] arr1 = RandomUtil.copyArray(arr);
-        Integer[] arr2 = RandomUtil.copyArray(arr);
-        SortTestUtil.testSort(SortEnum.MERGE_SORT,arr);
-        SortTestUtil.testSort(SortEnum.QUICK_SORT,arr1);
-        SortTestUtil.testSort(SortEnum.QUICK_SORT_2WAYS,arr2);*/
+        SortTestUtil.testSort(SortEnum.HEAP_SORT,array5);
+        SortTestUtil.testSort(SortEnum.HEAP_SORT_ADVANCE,array6);
+
+        System.out.println("NearlyOrderedArray");
+        array = RandomUtil.generateNearlyOrderedArray(size,100);
+        array2 = RandomUtil.copyArray(array);
+        array3 = RandomUtil.copyArray(array);
+        array4 = RandomUtil.copyArray(array);
+        array5 = RandomUtil.copyArray(array);
+        array6 = RandomUtil.copyArray(array);
+        SortTestUtil.testSort(SortEnum.MERGE_SORT,array);
+        SortTestUtil.testSort(SortEnum.QUICK_SORT_2WAYS,array2);
+        SortTestUtil.testSort(SortEnum.QUICK_SORT,array3);
+        SortTestUtil.testSort(SortEnum.QUICK_SORT_3WAYS,array4);
+        SortTestUtil.testSort(SortEnum.HEAP_SORT,array5);
+        SortTestUtil.testSort(SortEnum.HEAP_SORT_ADVANCE,array6);
     }
 }

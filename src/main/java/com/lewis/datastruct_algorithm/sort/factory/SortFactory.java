@@ -3,10 +3,7 @@ package com.lewis.datastruct_algorithm.sort.factory;
 import com.lewis.datastruct_algorithm.sort.Sort;
 import com.lewis.datastruct_algorithm.sort.SortEnum;
 import com.lewis.datastruct_algorithm.sort.strategy.*;
-import com.lewis.datastruct_algorithm.sort.strategy.advanced.MergeSort;
-import com.lewis.datastruct_algorithm.sort.strategy.advanced.QuickSort;
-import com.lewis.datastruct_algorithm.sort.strategy.advanced.QuickSort2Ways;
-import com.lewis.datastruct_algorithm.sort.strategy.advanced.QuickSort3Ways;
+import com.lewis.datastruct_algorithm.sort.strategy.advanced.*;
 
 /**
  * @author zmh46712
@@ -70,6 +67,12 @@ public class SortFactory {
                 return new QuickSort3Ways();
             case INSERT_SORT_ADVANCE:
                 return new InsertSortAdvanced();
+            case HEAP_SORT:
+                return new HeapSort();
+            case HEAP_SORT_ADVANCE:
+                return new HeapSortAdvance();
+            case HEAP_SORT1:
+                return new HeapSort1();
             default:
                 return new QuickSort();
         }
