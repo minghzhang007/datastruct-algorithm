@@ -21,12 +21,14 @@ public class Test {
         Integer[] array4 = RandomUtil.copyArray(array);
         Integer[] array5 = RandomUtil.copyArray(array);
         Integer[] array6 = RandomUtil.copyArray(array);
+        Integer[] array7 = RandomUtil.copyArray(array);
         SortTestUtil.testSort(SortEnum.MERGE_SORT,array);
         SortTestUtil.testSort(SortEnum.QUICK_SORT_2WAYS,array2);
         SortTestUtil.testSort(SortEnum.QUICK_SORT,array3);
         SortTestUtil.testSort(SortEnum.QUICK_SORT_3WAYS,array4);
-        SortTestUtil.testSort(SortEnum.HEAP_SORT,array5);
+        SortTestUtil.testSort(SortEnum.HEAP_SORT1,array7);
         SortTestUtil.testSort(SortEnum.HEAP_SORT_ADVANCE,array6);
+        SortTestUtil.testSort(SortEnum.HEAP_SORT,array5);
 
         System.out.println("NearlyOrderedArray");
         array = RandomUtil.generateNearlyOrderedArray(size,100);
@@ -35,11 +37,14 @@ public class Test {
         array4 = RandomUtil.copyArray(array);
         array5 = RandomUtil.copyArray(array);
         array6 = RandomUtil.copyArray(array);
+        array7 = RandomUtil.copyArray(array);
         SortTestUtil.testSort(SortEnum.MERGE_SORT,array);
         SortTestUtil.testSort(SortEnum.QUICK_SORT_2WAYS,array2);
         SortTestUtil.testSort(SortEnum.QUICK_SORT,array3);
         SortTestUtil.testSort(SortEnum.QUICK_SORT_3WAYS,array4);
-        SortTestUtil.testSort(SortEnum.HEAP_SORT,array5);
+        SortTestUtil.testSort(SortEnum.HEAP_SORT1,array7);
         SortTestUtil.testSort(SortEnum.HEAP_SORT_ADVANCE,array6);
+        SortTestUtil.testSort(SortEnum.HEAP_SORT,array5);
+
     }
 }

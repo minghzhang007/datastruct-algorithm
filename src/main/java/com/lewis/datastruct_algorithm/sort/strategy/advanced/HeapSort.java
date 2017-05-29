@@ -1,25 +1,50 @@
 package com.lewis.datastruct_algorithm.sort.strategy.advanced;
 
 import com.lewis.datastruct_algorithm.sort.Sort;
-import com.lewis.datastruct_algorithm.sort.heap.MaxHeap;
+
+import java.util.Arrays;
 
 /**
- * 使用最大堆来排序 将数组的元素一个一个的插入堆中来构建最大堆
+ * 原地堆排序，不适用额外的堆空间
  *
  * @author zmh46712
- * @version Id: HeapSort, v 0.1 2017/5/27 10:57 zmh46712 Exp $
+ * @version Id: HeapSort1, v 0.1 2017/5/27 13:50 zmh46712 Exp $
  */
 public class HeapSort implements Sort {
 
     @Override
     public Comparable[] sort(Comparable[] array) {
-        MaxHeap maxHeap = new MaxHeap(array.length);
-        for (int i = 0; i < array.length; i++) {
-            maxHeap.insert(array[i]);
+
+        int n = array.length;
+        //索引从0开始
+        for (int i = (n - 1) / 2; i >= 0; i--) {
+            shiftDown(array, n, i);
         }
-        for (int i = array.length - 1; i >= 0; i--) {
-            array[i] = maxHeap.extractMax();
+        for (int i = n - 1; i > 0; i--) {
+            swap(array, i, 0);
+            shiftDown(array, i, 0);
         }
         return array;
+    }
+
+    /**
+     * 下标从0开始的
+     *
+     * @param array
+     * @param n
+     * @param k
+     */
+    private void shiftDown(Comparable[] array, int n, int k) {
+        while (2 * k + 1 < n) {
+            int j = 2 * k + 1;
+            if (j + 1 < n && array[j + 1].compareTo(array[j]) > 0) {
+                j++;
+            }
+            if (array[k].compareTo(array[j]) >= 0) {
+                break;
+            }
+            swap(array, k, j);
+            k = j;
+        }
     }
 }
