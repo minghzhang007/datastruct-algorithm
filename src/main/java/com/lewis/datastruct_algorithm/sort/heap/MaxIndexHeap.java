@@ -14,12 +14,20 @@ import java.util.Arrays;
  */
 public class MaxIndexHeap<T extends Comparable> {
 
+    /**
+     * 最大索引堆中的数据
+     */
     protected T[] data;
 
     /**
-     * 索引：指向数据data
+     * 最大索引堆中的索引：indexes[x] = i 表示索引i在x的位置
      */
     private int[] indexes;
+
+    /**
+     * 最大索引堆中的反向索引：reverseIndexes[i] = x 表示索引i在x的位置
+     */
+    private int[] reverseIndexes;
 
     protected int count;
 
@@ -29,6 +37,11 @@ public class MaxIndexHeap<T extends Comparable> {
         this.data = (T[]) new Comparable[capacity];
         this.count = 0;
         this.capacity = capacity;
+        this.indexes = new int[capacity];
+        this.reverseIndexes = new int[capacity];
+        for (int i = 0; i < capacity; i++) {
+            reverseIndexes[i] = 0;
+        }
     }
 
     public int size() {
@@ -39,20 +52,54 @@ public class MaxIndexHeap<T extends Comparable> {
         return count == 0;
     }
 
-    public void insert(T item) {
+    public void insert(int i, T item) {
         assert (count + 1 <= capacity);
-        data[count] = item;
+        assert (i >= 0 && i <= capacity);
+        data[i] = item;
+        indexes[count] = i;
+        reverseIndexes[i] = count;
         shiftUp(count);
         count++;
     }
 
+    /**
+     * 获取最大值
+     */
     public T extractMax() {
         assert (count > 0);
-        T ret = data[0];
-        swap(data, 0, count - 1);
+        T ret = data[indexes[0]];
+        swap(indexes, 0, count - 1);
+        reverseIndexes[indexes[count - 1]] = 0;
         count--;
         shiftDown(0);
         return ret;
+    }
+
+    /**
+     * 获取最大值的索引
+     */
+    public int extractMaxIndex() {
+        assert (count > 0);
+        int ret = indexes[0];
+        swap(indexes, 0, count - 1);
+        count--;
+        shiftDown(0);
+        return ret;
+    }
+
+    /**
+     * 将最大索引堆中索引为i的元素修改为newData
+     */
+    public void set(int i, T newData) {
+        assert (i >= 0 && i <= capacity);
+        data[i] = newData;
+        for (int j = 0; j < count; j++) {
+            if (indexes[j] == i) {
+                shiftUp(j);
+                shiftDown(j);
+                return;
+            }
+        }
     }
 
     /**
@@ -61,44 +108,62 @@ public class MaxIndexHeap<T extends Comparable> {
     private void shiftDown(int k) {
         while (2 * k + 1 < count) {
             int j = 2 * k + 1;
-            if (j + 1 < count && data[j + 1].compareTo(data[j]) > 0) {
+            if (j + 1 < count && data[indexes[j + 1]].compareTo(data[indexes[j]]) > 0) {
                 j++;
             }
-            if (data[k].compareTo(data[j]) >= 0) {
+            if (data[indexes[k]].compareTo(data[indexes[j]]) >= 0) {
                 break;
             }
-            swap(data, k, j);
+            swap(indexes, k, j);
+            reverseIndexes[indexes[k]] = k;
+            reverseIndexes[indexes[j]] = j;
             k = j;
         }
     }
 
     private void shiftUp(int k) {
         while (k > 0 && greaterParent(k)) {
-            swap(data, k, (k - 1) / 2);
+            swap(indexes, k, (k - 1) / 2);
+            reverseIndexes[indexes[k]] = k;
+            reverseIndexes[indexes[(k - 1) / 2]] = (k - 1) / 2;
             k = (k - 1) / 2;
         }
     }
 
     private boolean greaterParent(int k) {
-        return data[k].compareTo(data[(k - 1) / 2]) > 0;
+        return data[indexes[k]].compareTo(data[indexes[(k - 1) / 2]]) > 0;
     }
 
-    private void swap(T[] array, int idx, int idy) {
-        T tmp = array[idx];
+    private void swap(int[] array, int idx, int idy) {
+        int tmp = array[idx];
         array[idx] = array[idy];
         array[idy] = tmp;
     }
 
     public static void main(String[] args) {
-        Integer[] array = RandomUtil.generateRandomArray(16, 0, 100);
-        MaxIndexHeap maxIndexHeap = new MaxIndexHeap(10);
+        Integer[] array = RandomUtil.generateRandomArray(20, 0, 100);
+        MaxIndexHeap maxIndexHeap = new MaxIndexHeap(20);
         for (int i = 0; i < array.length; i++) {
-            maxIndexHeap.insert(array[i]);
+            maxIndexHeap.insert(i, array[i]);
         }
         System.out.println(Arrays.toString(maxIndexHeap.data));
-
         for (int i = 0; i < array.length; i++) {
             System.out.print(maxIndexHeap.extractMax() + " ");
+        }
+        System.out.println("=================");
+        System.out.println("=================");
+        Integer[] array1 = RandomUtil.copyArray(array);
+        maxIndexHeap = new MaxIndexHeap(20);
+        for (int i = 0; i < array.length; i++) {
+            maxIndexHeap.insert(i, array1[i]);
+        }
+        System.out.println(Arrays.toString(maxIndexHeap.data));
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(maxIndexHeap.extractMaxIndex() + " ");
+        }
+        System.out.println();
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(i + " ");
         }
     }
 
